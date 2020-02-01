@@ -159,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
                     velocity.y = 0;
                     if (contact.normal.x >= 0)
                     {
-                        mirrored = false;
-                        transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
+                            mirrored = false;
+                            transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
                     }
                 }
             }
@@ -176,8 +176,8 @@ public class PlayerMovement : MonoBehaviour
                     velocity.y = 0;
                     if (contact.normal.x <= 0)
                     {
-                        mirrored = true;
-                        transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
+                            mirrored = true;
+                            transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
                     }
                 }
             }
