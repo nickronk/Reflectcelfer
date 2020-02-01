@@ -9,13 +9,14 @@ public class Lever : MonoBehaviour
     public float speed;
     public GameObject doorTrans;
     public Rigidbody2D particleRb;
-    public Vector2 velocity;
+    public Vector3 velocity;
     public bool shimmer;
 
     // Start is called before the first frame update
     void Start()
     {
         doorTrans = GameObject.FindGameObjectWithTag("Door");
+
         particleRb = shimmerParticles.GetComponent<Rigidbody2D>();
 
         shimmerParticles.Stop();
@@ -25,22 +26,21 @@ public class Lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("Bool" + shimmer);
         if (shimmer)
-        {
-            shimmerParticles.Play();
-            shimmerParticles.GetComponent<Renderer>().enabled = true;
+        {           
             StartCoroutine(ParticleEffects());
+            
+            particleRb.MovePosition(velocity);
         }
 
-        particleRb.MovePosition(velocity);
     }
 
    public IEnumerator ParticleEffects()
     {
-        velocity = Vector2.MoveTowards(shimmerParticles.transform.position, doorTrans.transform.position, speed * Time.deltaTime);
+        velocity = Vector3.MoveTowards(shimmerParticles.transform.position, doorTrans.transform.position, speed * Time.deltaTime);
 
-        if (transform.position == doorTrans.transform.position) {
+        if (shimmerParticles.transform.position == doorTrans.transform.position) {
 
             yield return new WaitForSeconds(3);
 

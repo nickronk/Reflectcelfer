@@ -13,6 +13,9 @@ TagManager:
   - None
   - Movers
   - MPlat
+  - Lever
+  - Door
+  - Particles
   layers:
   - Default
   - TransparentFX
