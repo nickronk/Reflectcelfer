@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Position")]
     public Vector2 startPos, playerPos;
     Vector2 rayDir = new Vector2(.5f, 0);
+    GameObject mirror, normal;
+   public Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,9 @@ public class PlayerMovement : MonoBehaviour
         //playerAnim = GetComponent<Animator>();
 
         startPos = transform.position;
+
+        mirror = GameObject.FindGameObjectWithTag("Mirror");
+        normal = GameObject.FindGameObjectWithTag("Normal");
     }
 
     // Update is called once per frame
@@ -49,10 +54,12 @@ public class PlayerMovement : MonoBehaviour
         //MOVING
         if (mirrored == false)
         {
+            playerSr.color = new Color32(255,146,146,255);
             velocity.x = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
         }
         else if (mirrored == true)
         {
+            playerSr.color = new Color32(146, 146, 255, 255);
             velocity.x = -Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
         }
 
@@ -102,23 +109,22 @@ public class PlayerMovement : MonoBehaviour
 
     }//END OF UPDATE
 
-
-    void OnTriggerStay2D(Collider2D other)
+    /*
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag=="Mirror")
+        if (other.gameObject.tag == "Mirror")
         {
             mirrored = true;
+            transform.position = new Vector3(normal.transform.position.x,transform.position.y, normal.transform.position.z) - offset;
         }
-    }
 
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.tag == "Mirror")
+        if (other.gameObject.tag == "Normal")
         {
             mirrored = false;
+            transform.position =  new Vector3(normal.transform.position.x,transform.position.y, normal.transform.position.z) + offset;
         }
-    }
-
+    }//END OF TRIGGER ENTER
+    */
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -143,6 +149,40 @@ public class PlayerMovement : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (other.gameObject.tag == "Mirror")
+        {
+            Debug.Log("ON PLATFORM");
+            foreach (ContactPoint2D contact in other.contacts)
+            {
+                if (Mathf.Abs(contact.normal.x) > Mathf.Abs(contact.normal.y))
+                {
+                    velocity.y = 0;
+                    if (contact.normal.x >= 0)
+                    {
+                        mirrored = false;
+                        transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
+                    }
+                }
+            }
+        }//END OF MIRROR
+
+        if (other.gameObject.tag == "Normal")
+        {
+            Debug.Log("ON PLATFORM");
+            foreach (ContactPoint2D contact in other.contacts)
+            {
+                if (Mathf.Abs(contact.normal.x) > Mathf.Abs(contact.normal.y))
+                {
+                    velocity.y = 0;
+                    if (contact.normal.x <= 0)
+                    {
+                        mirrored = true;
+                        transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
+                    }
+                }
+            }
+        }//END OF NORMAL
+
     }//END ON COLLISISON ENTER
 
     void OnCollisionStay2D(Collision2D other)
@@ -161,5 +201,4 @@ public class PlayerMovement : MonoBehaviour
             }
         }//END OF PLATFORM COLLISION STAY
     }//END OF COLLSION STAY
-
 }//END OF SCRIPT

@@ -9,6 +9,7 @@ TagManager:
   - Platform
   - Enemy
   - MBorder
+  - Normal
   layers:
   - Default
   - TransparentFX
