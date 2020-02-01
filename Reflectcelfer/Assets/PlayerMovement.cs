@@ -30,9 +30,14 @@ public class PlayerMovement : MonoBehaviour
     GameObject mirror, normal;
    public Vector3 offset;
 
+    [Header("Level Change")]
+    levelScript levelsWork;
+    public GameObject mainCam;
+
     // Start is called before the first frame update
     void Start()
     {
+        levelsWork = mainCam.GetComponent<levelScript>();
         cooldownMaker = 3.5f;
 
         rb = GetComponent<Rigidbody2D>();
@@ -114,22 +119,17 @@ public class PlayerMovement : MonoBehaviour
 
     }//END OF UPDATE
 
-    /*
+    
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Mirror")
+        if (other.gameObject.tag == "Exit")
         {
-            mirrored = true;
-            transform.position = new Vector3(normal.transform.position.x,transform.position.y, normal.transform.position.z) - offset;
+            levelsWork.newLevel();
         }
 
-        if (other.gameObject.tag == "Normal")
-        {
-            mirrored = false;
-            transform.position =  new Vector3(normal.transform.position.x,transform.position.y, normal.transform.position.z) + offset;
-        }
+       
     }//END OF TRIGGER ENTER
-    */
+    
 
     void OnCollisionEnter2D(Collision2D other)
     {

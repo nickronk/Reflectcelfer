@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class levelScript : MonoBehaviour
 { 
-    int level;
-    public GameObject player;
+    public int level;
+    public GameObject player,respA;
 
     void Start()
     {
@@ -17,5 +17,43 @@ public class levelScript : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void newLevel()
+    {
+        level++;
+        if (level == 2)
+        {
+            transform.position = new Vector3();
+            player.transform.position = new Vector3();
+            respA.transform.position = new Vector3();
+        }
+        else if (level == 3)
+        {
+            transform.position = new Vector3();
+            player.transform.position = new Vector3();
+            respA.transform.position = new Vector3();
+        }
+        else if (level == 4)
+        {
+            transform.position = new Vector3();
+            player.transform.position = new Vector3();
+            respA.transform.position = new Vector3();
+        }
+        else if (level == 5)
+        {
+            transform.position = new Vector3();
+            player.transform.position = new Vector3();
+            respA.transform.position = new Vector3();
+        }
+        else if (level == 6)
+        
+        {
+            transform.position = new Vector3();
+            player.transform.position = new Vector3();
+            respA.transform.position = new Vector3();
+        }
+
+
     }
 }
