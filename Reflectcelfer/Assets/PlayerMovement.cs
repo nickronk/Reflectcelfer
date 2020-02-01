@@ -164,11 +164,11 @@ public class PlayerMovement : MonoBehaviour
                     //velocity.y = 0;
                     if (contact.normal.x >= 0)
                     {
-                        if (mirrored == false)
-                            mirrored = true;
-                        else
-                        {
+                        //if (mirrored == false)
                             mirrored = false;
+                        //else
+                        {
+                        //    mirrored = false;
                         }
                       
                         transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
@@ -189,11 +189,11 @@ public class PlayerMovement : MonoBehaviour
                     //velocity.y = 0;
                     if (contact.normal.x <= 0)
                     {
-                        if (mirrored == false)
+                        //if (mirrored == false)
                             mirrored = true;
-                        else
+                        //else
                         {
-                            mirrored = false;
+                        //    mirrored = false;
                         }
                         transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
                         other.gameObject.GetComponent<mirrorScript>().CooldownSet();

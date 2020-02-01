@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class levelScript : MonoBehaviour
 { 
     int level;
-
+    public GameObject player;
 
     void Start()
     {

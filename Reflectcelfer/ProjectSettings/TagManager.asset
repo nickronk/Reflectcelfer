@@ -11,6 +11,8 @@ TagManager:
   - MBorder
   - Normal
   - None
+  - Movers
+  - MPlat
   layers:
   - Default
   - TransparentFX
