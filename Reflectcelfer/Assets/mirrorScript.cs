@@ -34,7 +34,7 @@ public class mirrorScript : MonoBehaviour
         else
         {
             transform.tag = ogTag;
-            sprRend.color = new Color(255, 255, 255);
+            sprRend.color = new Color(0, 0, 255);
         }
 
         
