@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - MBorder
   - Normal
+  - None
   layers:
   - Default
   - TransparentFX

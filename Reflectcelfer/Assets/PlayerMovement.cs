@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float speed;
 
+    [Header("Movement")]
+    public float cooldownMaker;
+
     public bool mirrored = false;
     public Vector2 velocity;
 
@@ -30,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cooldownMaker = 3.5f;
+
         rb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();
         //playerAnim = GetComponent<Animator>();
@@ -156,15 +161,17 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Mathf.Abs(contact.normal.x) > Mathf.Abs(contact.normal.y))
                 {
-                    velocity.y = 0;
+                    //velocity.y = 0;
                     if (contact.normal.x >= 0)
                     {
                             mirrored = false;
                             transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
+                            other.gameObject.GetComponent<mirrorScript>().CooldownSet();
                     }
                 }
             }
-        }//END OF MIRROR
+        }
+        //END OF MIRROR
 
         if (other.gameObject.tag == "Normal")
         {
@@ -173,11 +180,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (Mathf.Abs(contact.normal.x) > Mathf.Abs(contact.normal.y))
                 {
-                    velocity.y = 0;
+                    //velocity.y = 0;
                     if (contact.normal.x <= 0)
                     {
                             mirrored = true;
                             transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
+                        other.gameObject.GetComponent<mirrorScript>().CooldownSet();
+
                     }
                 }
             }
