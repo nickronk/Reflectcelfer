@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float speed;
+
+    public bool mirrored = false;
     public Vector2 velocity;
 
     [Header("Jumping")]
@@ -45,7 +47,15 @@ public class PlayerMovement : MonoBehaviour
         playerPos = transform.position;
 
         //MOVING
-        velocity.x = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        if (mirrored == false)
+        {
+            velocity.x = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        }
+        else if (mirrored == true)
+        {
+            velocity.x = -Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
+        }
+
         // playerAnim.SetFloat("hInput", Mathf.Abs(velocity.x));
 
         if (velocity.x > 0)
@@ -73,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //JUMPING
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
             Debug.Log("IS JUMPING");
 
@@ -91,6 +101,24 @@ public class PlayerMovement : MonoBehaviour
         onPlatform = false;
 
     }//END OF UPDATE
+
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.tag=="Mirror")
+        {
+            mirrored = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Mirror")
+        {
+            mirrored = false;
+        }
+    }
+
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -133,4 +161,5 @@ public class PlayerMovement : MonoBehaviour
             }
         }//END OF PLATFORM COLLISION STAY
     }//END OF COLLSION STAY
+
 }//END OF SCRIPT
