@@ -26,7 +26,6 @@ public class Lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Bool" + shimmer);
         if (shimmer)
         {           
             StartCoroutine(ParticleEffects());

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Components")]
     public Rigidbody2D rb;
     public SpriteRenderer playerSr;
-    //public Animator playerAnim;
+    public Animator playerAnim;
 
     [Header("Movement")]
     public float speed;
@@ -25,10 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public bool onPlatform;
 
     [Header("Position")]
-    public Vector2 startPos, playerPos;
+    Vector2 startPos, playerPos;
     Vector2 rayDir = new Vector2(.5f, 0);
     GameObject mirror, normal;
-   public Vector3 offset;
+    public Vector3 offset;
 
     [Header("Level Change")]
     levelScript levelsWork;
@@ -37,17 +37,19 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelsWork = mainCam.GetComponent<levelScript>();
-        cooldownMaker = 3.5f;
-
         rb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();
-        //playerAnim = GetComponent<Animator>();
+        playerAnim = GetComponent<Animator>();
 
         startPos = transform.position;
 
         mirror = GameObject.FindGameObjectWithTag("Mirror");
         normal = GameObject.FindGameObjectWithTag("Normal");
+
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera");
+        levelsWork = mainCam.GetComponent<levelScript>();
+        cooldownMaker = 3.5f;
+
     }
 
     // Update is called once per frame
@@ -73,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.x = -Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
         }
 
-        // playerAnim.SetFloat("hInput", Mathf.Abs(velocity.x));
+        playerAnim.SetFloat("hInput", Mathf.Abs(velocity.x));
 
         if (velocity.x > 0)
         {
@@ -116,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
         //RIGIDBODY
         rb.MovePosition(rb.position + velocity);
         onPlatform = false;
-
     }//END OF UPDATE
 
     
@@ -125,9 +126,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Exit")
         {
             levelsWork.newLevel();
-        }
-
-       
+        }      
     }//END OF TRIGGER ENTER
     
 
@@ -167,17 +166,16 @@ public class PlayerMovement : MonoBehaviour
                         //if (mirrored == false)
                             mirrored = false;
                         //else
-                        {
+                        //{
                         //    mirrored = false;
-                        }
+                        //}
                       
                         transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
-                            other.gameObject.GetComponent<mirrorScript>().CooldownSet();
+                        other.gameObject.GetComponent<mirrorScript>().CooldownSet();
                     }
                 }
             }
-        }
-        //END OF MIRROR
+        } //END OF MIRROR
 
         if (other.gameObject.tag == "Normal")
         {
@@ -192,9 +190,9 @@ public class PlayerMovement : MonoBehaviour
                         //if (mirrored == false)
                             mirrored = true;
                         //else
-                        {
+                        //{
                         //    mirrored = false;
-                        }
+                        //}
                         transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
                         other.gameObject.GetComponent<mirrorScript>().CooldownSet();
 
@@ -202,7 +200,6 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }//END OF NORMAL
-
     }//END ON COLLISISON ENTER
 
     void OnCollisionStay2D(Collision2D other)
@@ -221,4 +218,17 @@ public class PlayerMovement : MonoBehaviour
             }
         }//END OF PLATFORM COLLISION STAY
     }//END OF COLLSION STAY
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Lever")
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                other.gameObject.GetComponent<Lever>().shimmer = true;
+                other.gameObject.GetComponent<Lever>().shimmerParticles.Play();
+                other.gameObject.GetComponent<Lever>().shimmerParticles.GetComponent<Renderer>().enabled = true;
+            }
+        }
+    }//END OF ON TRIGGER STAY
 }//END OF SCRIPT
