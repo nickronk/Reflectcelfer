@@ -16,6 +16,8 @@ TagManager:
   - Lever
   - Door
   - Particles
+  - BrokenMirror
+  - FixedMirror
   layers:
   - Default
   - TransparentFX

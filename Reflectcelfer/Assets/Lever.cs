@@ -7,20 +7,22 @@ public class Lever : MonoBehaviour
 
     public ParticleSystem shimmerParticles;
     public float speed;
-    public GameObject doorTrans;
+    public GameObject mirrorObj;
     public Rigidbody2D particleRb;
     public Vector3 velocity;
-    public bool shimmer;
+    public bool shimmer,stop;
 
     // Start is called before the first frame update
     void Start()
     {
-        doorTrans = GameObject.FindGameObjectWithTag("Door");
+        mirrorObj = GameObject.FindGameObjectWithTag("BrokenMirror");
 
         particleRb = shimmerParticles.GetComponent<Rigidbody2D>();
 
         shimmerParticles.Stop();
         shimmerParticles.GetComponent<Renderer>().enabled = false;
+
+        stop = false;
     }
 
     // Update is called once per frame
@@ -33,18 +35,25 @@ public class Lever : MonoBehaviour
             particleRb.MovePosition(velocity);
         }
 
+        if (stop)
+        {
+            StopAllCoroutines();
+            stop = true;
+        }
+
     }
 
    public IEnumerator ParticleEffects()
     {
-        velocity = Vector3.MoveTowards(shimmerParticles.transform.position, doorTrans.transform.position, speed * Time.deltaTime);
+        velocity = Vector3.MoveTowards(shimmerParticles.transform.position, mirrorObj.transform.position, speed * Time.deltaTime);
 
-        if (shimmerParticles.transform.position == doorTrans.transform.position) {
+        if (shimmerParticles.transform.position == mirrorObj.transform.position) {
+            mirrorObj.GetComponent<Mirror>().FixMirror();
 
-            yield return new WaitForSeconds(3);
-
+            yield return new WaitForSeconds(5);
             shimmerParticles.Stop();
             shimmerParticles.GetComponent<Renderer>().enabled = false;
+            stop = true;
         }
     }
 }

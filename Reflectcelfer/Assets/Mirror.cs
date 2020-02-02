@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Mirror : MonoBehaviour
 {
-
-    public SpriteRenderer brokenGlassSr;
-    public SpriteRenderer glass;
+    public GameObject glass;
 
     public Animator mirrorAnim;
 
-    IEnumerator fixMirror()
+    void Start()
     {
-        mirrorAnim.SetTrigger("fixMirror");
+        mirrorAnim = GetComponent<Animator>();
+        glass = GameObject.FindGameObjectWithTag("FixedMirror");
+    }
 
-        yield return new WaitForSeconds(1);        
+
+    public void FixMirror()
+    {
+        mirrorAnim.SetTrigger("FixMirror");
     }
 }
