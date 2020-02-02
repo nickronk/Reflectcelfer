@@ -64,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
 
         playerPos = transform.position;
 
+
+        mirror = GameObject.Find("Mirror" + levelsWork.level.ToString());
+        normal = GameObject.Find("Normal" + levelsWork.level.ToString());
+
         //MOVING
         if (mirrored == false)
         {
