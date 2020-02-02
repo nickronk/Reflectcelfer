@@ -86,13 +86,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (velocity.x > 0)
         {
-            playerSr.flipX = false;
+            playerSr.flipX = true;
             rayDir.x = Mathf.Abs(rayDir.x);
         }
 
         if (velocity.x < 0)
         {
-            playerSr.flipX = true;
+            playerSr.flipX = false;
             rayDir *= -1;
         }
 

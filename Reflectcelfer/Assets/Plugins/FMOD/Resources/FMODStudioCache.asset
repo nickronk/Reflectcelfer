@@ -34,6 +34,23 @@ MonoBehaviour:
   Max: 7
   Default: 1
   Exists: 1
+--- !u!114 &-7184914177009226646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/InGAme/Level
+  m_EditorClassIdentifier: 
+  Name: Level
+  Min: 1
+  Max: 7
+  Default: 1
+  Exists: 1
 --- !u!114 &-6267095548622990786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,12 +154,12 @@ MonoBehaviour:
   Path: event:/InGAme
   guid: c709fc70d9953d4382b04555eb5c04ec
   Banks:
-  - {fileID: -1581581245154913793}
+  - {fileID: -2529104783557508524}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 4186062530197312844}
+  - {fileID: -7184914177009226646}
   MinDistance: 1
   MaxDistance: 20
   Length: 56294
@@ -161,6 +178,24 @@ MonoBehaviour:
   Path: GJ2020/Build/Desktop/Master.bank
   SubDir: 
   lastModified: 637161930573821009
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2529104783557508524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: GJ2020/Build/Desktop/Master.bank
+  SubDir: 
+  lastModified: 637162446380502600
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -196,15 +231,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 6400359928779766243}
-  - {fileID: -1581581245154913793}
+  - {fileID: -2529104783557508524}
   EditorEvents:
   - {fileID: -3858977562674211221}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -1581581245154913793}
+  - {fileID: -2529104783557508524}
   StringsBanks:
   - {fileID: 6400359928779766243}
-  stringsBankWriteTime: 637162254585138748
+  stringsBankWriteTime: 637162446380612540
   cacheVersion: 3
 --- !u!114 &707760031583155730
 MonoBehaviour:
@@ -326,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: GJ2020/Build/Desktop/Master.strings.bank
   SubDir: 
-  lastModified: 637162254585138748
+  lastModified: 637162446380612540
   LoadResult: 0
   FileSizes:
   - Name: Desktop
