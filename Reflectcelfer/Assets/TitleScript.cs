@@ -16,9 +16,9 @@ public class TitleScript : MonoBehaviour
         startButton.interactable = true;
     }
 
-    public void StartGame(int levelNum)
+    public void StartGame(int sceneNum)
     {
-        SceneManager.LoadSceneAsync(levelNum);
+        SceneManager.LoadSceneAsync(sceneNum);
     }
 
     public void ShowCredits()
@@ -31,6 +31,16 @@ public class TitleScript : MonoBehaviour
     {
         Panel.SetActive(false);
         startButton.interactable = true;
+    }
+
+    public void GoToTitle(int sceneNum)
+    {
+        SceneManager.LoadSceneAsync(sceneNum);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 
 }
