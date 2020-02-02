@@ -238,6 +238,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
+                other.gameObject.GetComponent<Lever>().shimmerSound.clip = other.gameObject.GetComponent<Lever>().leverSounds[0];
+
                 other.gameObject.GetComponent<Lever>().shimmer = true;
                 other.gameObject.GetComponent<Lever>().shimmerParticles.Play();
                 other.gameObject.GetComponent<Lever>().shimmerParticles.GetComponent<Renderer>().enabled = true;
