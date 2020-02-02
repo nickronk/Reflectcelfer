@@ -41,8 +41,8 @@ public class Enemy : MonoBehaviour
         findPlayer = GameObject.FindGameObjectWithTag("Player");
 
         //MOVING
-        velocity = Vector2.MoveTowards(enemyPos, findPlayer.transform.position, speed * Time.deltaTime);
-        //velocity.x = speed * Time.deltaTime;
+        velocity.x *= speed;
+        velocity.y = -2 + Mathf.Sin(Time.time * .25f);
 
         if (velocity.x > 0)
         {
@@ -60,4 +60,9 @@ public class Enemy : MonoBehaviour
         rb.MovePosition(velocity);
 
     }//END OF UPDATE
+
+    public void restartLevel()
+    {
+        transform.position = startPos;
+    }
 }
