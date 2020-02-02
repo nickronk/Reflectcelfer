@@ -18,6 +18,8 @@ TagManager:
   - Particles
   - BrokenMirror
   - FixedMirror
+  - DoorWhite
+  - DoorBlack
   layers:
   - Default
   - TransparentFX

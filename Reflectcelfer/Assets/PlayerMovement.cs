@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public SpriteRenderer playerSr;
     public Animator playerAnim;
+    public GameObject respawnArea;
 
     [Header("Movement")]
     public float speed;
@@ -123,10 +124,14 @@ public class PlayerMovement : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Exit")
+        if (other.gameObject.tag == "DoorWhite" && mirrored)
         {
             levelsWork.newLevel();
         }      
+        else if (other.gameObject.tag == "DoorBlack" && !mirrored)
+        {
+            levelsWork.newLevel();
+        }
     }//END OF TRIGGER ENTER
     
 
@@ -150,7 +155,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")
         {
-            Destroy(gameObject);
+            gameObject.transform.position = respawnArea.transform.position;
+            GetComponent<Enemy>().resetLocation();
         }
 
         if (other.gameObject.tag == "Mirror")
