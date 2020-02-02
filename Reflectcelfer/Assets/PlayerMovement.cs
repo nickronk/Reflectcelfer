@@ -127,10 +127,12 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "DoorWhite" && mirrored)
         {
             levelsWork.newLevel();
+            mirrored = false;
         }      
         else if (other.gameObject.tag == "DoorBlack" && !mirrored)
         {
             levelsWork.newLevel();
+            mirrored = false;
         }
     }//END OF TRIGGER ENTER
     

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class levelScript : MonoBehaviour
 { 
-    public int level;
+    public int level=1;
     public GameObject player,respA;
     Camera viewer;
 
@@ -31,7 +31,7 @@ public class levelScript : MonoBehaviour
         if (level == 2)
         {
             transform.position = new Vector3(-117.11f, 15.9f, -10f);
-            respA.transform.position = new Vector3(-124, -13.5f);
+            respA.transform.position = new Vector3(-124.1f, 13.4f);
             player.transform.position = respA.transform.position;
         }
         else if (level == 3)
