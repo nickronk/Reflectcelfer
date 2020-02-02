@@ -9,6 +9,8 @@ public class levelScript : MonoBehaviour
     public GameObject player,respA;
     Camera viewer;
     public FMODUnity.StudioEventEmitter emitter;
+    FMOD.Studio.Bus Maestro;
+    public float vol;
 
     void OnEnable()
     {
@@ -17,6 +19,12 @@ public class levelScript : MonoBehaviour
         var target = GameObject.Find("EMTR");
         emitter.SetParameter("Level", level);
 
+    }
+
+    void Awake()
+    {
+        Maestro = FMODUnity.RuntimeManager.GetBus("bus:/");
+        
     }
 
     void Start()
@@ -29,7 +37,12 @@ public class levelScript : MonoBehaviour
         viewer.orthographicSize = 5;
     }
 
-   
+    void Update()
+    {
+        Maestro.setVolume(vol);
+    }
+
+
 
     public void newLevel()
     {
