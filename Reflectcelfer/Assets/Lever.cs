@@ -9,8 +9,10 @@ public class Lever : MonoBehaviour
     public float speed;
     public GameObject mirrorObj;
     public Rigidbody2D particleRb;
+    public AudioSource shimmerSound;
+    public AudioClip[] leverSounds;
     public Vector3 velocity;
-    public bool shimmer,stop;
+    public bool shimmer,stop,playFix;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class Lever : MonoBehaviour
         mirrorObj = GameObject.FindGameObjectWithTag("BrokenMirror");
 
         particleRb = shimmerParticles.GetComponent<Rigidbody2D>();
+        shimmerSound = GetComponent<AudioSource>();
 
         shimmerParticles.Stop();
         shimmerParticles.GetComponent<Renderer>().enabled = false;
@@ -29,18 +32,32 @@ public class Lever : MonoBehaviour
     void Update()
     {
         if (shimmer)
-        {           
+        {
             StartCoroutine(ParticleEffects());
-            
+
+            if (shimmerSound.isPlaying == false)
+            {
+                shimmerSound.clip = leverSounds[1];
+                shimmerSound.Play();
+            }
+
+
             particleRb.MovePosition(velocity);
+        }
+
+        if (playFix)
+        {
+            shimmerSound.clip = leverSounds[2];
+            shimmerSound.Play();
         }
 
         if (stop)
         {
             StopAllCoroutines();
             stop = true;
-        }
+            shimmerSound.Stop();
 
+        }
     }
 
    public IEnumerator ParticleEffects()
@@ -49,9 +66,11 @@ public class Lever : MonoBehaviour
 
         if (shimmerParticles.transform.position == mirrorObj.transform.position) {
             mirrorObj.GetComponent<Mirror>().FixMirror();
-
-            yield return new WaitForSeconds(5);
             shimmerParticles.Stop();
+            playFix = true;
+
+            yield return new WaitForSeconds(3);
+
             shimmerParticles.GetComponent<Renderer>().enabled = false;
             stop = true;
         }
