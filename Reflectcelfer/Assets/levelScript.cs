@@ -8,6 +8,16 @@ public class levelScript : MonoBehaviour
     public int level=1;
     public GameObject player,respA;
     Camera viewer;
+    public FMODUnity.StudioEventEmitter emitter;
+
+    void OnEnable()
+    {
+        //emitter.SetParameter("Level", level);
+        emitter.SetParameter("Level", level);
+        var target = GameObject.Find("EMTR");
+        emitter.SetParameter("Level", level);
+
+    }
 
     void Start()
     {
@@ -19,15 +29,13 @@ public class levelScript : MonoBehaviour
         viewer.orthographicSize = 5;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void newLevel()
     {
         level++;
+        
+        emitter.SetParameter("Level", level);
         if (level == 2)
         {
             transform.position = new Vector3(-117.11f, 15.9f, -10f);

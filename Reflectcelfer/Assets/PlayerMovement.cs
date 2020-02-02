@@ -44,8 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
         startPos = transform.position;
 
-        mirror = GameObject.FindGameObjectWithTag("Mirror");
-        normal = GameObject.FindGameObjectWithTag("Normal");
+        
 
         mainCam = GameObject.FindGameObjectWithTag("MainCamera");
         levelsWork = mainCam.GetComponent<levelScript>();
@@ -65,8 +64,8 @@ public class PlayerMovement : MonoBehaviour
         playerPos = transform.position;
 
 
-        //mirror = GameObject.Find("Mirror" + levelsWork.level.ToString());
-        //normal = GameObject.Find("Normal" + levelsWork.level.ToString());
+        mirror = GameObject.Find("Mirror" + levelsWork.level.ToString());
+        normal = GameObject.Find("Normal" + levelsWork.level.ToString());
 
         //MOVING
         if (mirrored == false)

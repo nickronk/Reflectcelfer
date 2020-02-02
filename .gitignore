@@ -61,3 +61,4 @@ crashlytics-build.properties
 *.log
 *.log
 Reflectcelfer/fmod_editor.log
+*.log
