@@ -12,10 +12,11 @@ public class levelScript : MonoBehaviour
     void Start()
     {
         viewer = GetComponent<Camera>();
-        
-        transform.position = new Vector3(-73.25f, 21.71f);
+
+        transform.position = new Vector3(-73.25f, 21.71f, -10f);
         player.transform.position = new Vector3(-81.5f, 17.6f);
         respA.transform.position = new Vector3(-81.5f, 17.6f);
+        viewer.orthographicSize = 5;
     }
 
     // Update is called once per frame
@@ -29,13 +30,15 @@ public class levelScript : MonoBehaviour
         level++;
         if (level == 2)
         {
-            transform.position = new Vector3(-81.5f,17.6f);
-            player.transform.position = new Vector3();
-            respA.transform.position = new Vector3();
+            transform.position = new Vector3(-117.11f, 15.9f, -10f);
+            respA.transform.position = new Vector3(-124, -13.5f);
+            player.transform.position = respA.transform.position;
         }
         else if (level == 3)
         {
-            transform.position = new Vector3(-75,-12.5f);
+            viewer.orthographicSize = 10;
+
+            transform.position = new Vector3(-75,-12.5f, -10f);
             respA.transform.position = new Vector3(-90,-17.5f);
             player.transform.position = respA.transform.position;
         }

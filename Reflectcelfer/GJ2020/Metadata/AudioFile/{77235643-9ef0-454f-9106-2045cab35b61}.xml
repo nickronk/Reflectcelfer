@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{77235643-9ef0-454f-9106-2045cab35b61}">
+		<property name="assetPath">
+			<value>piano loop w_ reverb.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>11.294126984126985</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e8e7d060-e1ca-46a0-8608-a12edc567d55}</destination>
+		</relationship>
+	</object>
+</objects>

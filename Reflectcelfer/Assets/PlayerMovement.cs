@@ -152,11 +152,12 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }//END OF PLATFORM COLLISION ENTER
-
+        
         if (other.gameObject.tag == "Enemy")
         {
             gameObject.transform.position = respawnArea.transform.position;
-            GetComponent<Enemy>().resetLocation();
+            if (other.gameObject.layer!=14)
+                GetComponent<Enemy>().restartLevel();
         }
 
         if (other.gameObject.tag == "Mirror")
