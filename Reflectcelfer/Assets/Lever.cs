@@ -67,7 +67,7 @@ public class Lever : MonoBehaviour
         if (shimmerParticles.transform.position == mirrorObj.transform.position) {
             mirrorObj.GetComponent<Mirror>().FixMirror();
             shimmerParticles.Stop();
-            playFix = true;
+            //playFix = true;
 
             yield return new WaitForSeconds(3);
 
