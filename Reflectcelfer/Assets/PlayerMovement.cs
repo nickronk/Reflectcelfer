@@ -37,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     levelScript levelsWork;
     public GameObject mainCam;
 
+    public AudioSource main;
+    public AudioClip mirclip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();
         playerAnim = GetComponent<Animator>();
-
+        
         startPos = transform.position;
 
         
@@ -188,6 +191,7 @@ public class PlayerMovement : MonoBehaviour
                         //}
                       
                         transform.position = new Vector3(normal.transform.position.x, transform.position.y, normal.transform.position.z) - offset;
+                        main.PlayOneShot(mirclip);
                         other.gameObject.GetComponent<mirrorScript>().CooldownSet();
                     }
                 }
@@ -211,6 +215,7 @@ public class PlayerMovement : MonoBehaviour
                         //    mirrored = false;
                         //}
                         transform.position = new Vector3(mirror.transform.position.x, transform.position.y, normal.transform.position.z) + offset;
+                        main.PlayOneShot(mirclip);
                         other.gameObject.GetComponent<mirrorScript>().CooldownSet();
 
                     }

@@ -20,4 +20,6 @@ public class Mirror : MonoBehaviour
     {
         mirrorAnim.SetTrigger("FixMirror");
     }
+
+    
 }
