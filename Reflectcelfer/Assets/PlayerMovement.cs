@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravityDown;
     public float jumpVel;
     public bool onPlatform;
+    public AudioClip hopN, landN;
+    AudioSource audSour;
 
     [Header("Position")]
     Vector2 startPos, playerPos;
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audSour = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();
         playerAnim = GetComponent<Animator>();
@@ -116,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = jumpVel;
                 //playerAnim.SetBool("Jump",true);
                 onPlatform = false;
+                audSour.PlayOneShot(hopN);
             }
         }
 
@@ -152,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
                     velocity.y = 0;
                     if (contact.normal.y >= 0)
                     {
-                        //playerAnim.SetBool("Jump", false);
+                        audSour.PlayOneShot(landN);
                     }
                 }
             }
@@ -161,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             gameObject.transform.position = respawnArea.transform.position;
+            mirrored = false;
             if (other.gameObject.layer!=14)
                 GetComponent<Enemy>().restartLevel();
         }

@@ -13,11 +13,19 @@ public class Lever : MonoBehaviour
     public AudioClip[] leverSounds;
     public Vector3 velocity;
     public bool shimmer,stop,playFix;
+    public levelScript levScript;
+    public SpriteRenderer blackBox;
 
     // Start is called before the first frame update
     void Start()
     {
-        mirrorObj = GameObject.FindGameObjectWithTag("BrokenMirror");
+
+        //mirrorObj = GameObject.Find("BrokenMirror" + levScript.level.ToString());
+
+        for (int a = 0; a < mirrorObj.transform.childCount; a++)
+        {
+            mirrorObj.transform.GetChild(a).gameObject.SetActive(false);
+        }
 
         particleRb = shimmerParticles.GetComponent<Rigidbody2D>();
         shimmerSound = GetComponent<AudioSource>();
@@ -31,6 +39,8 @@ public class Lever : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
+
         if (shimmer)
         {
             StartCoroutine(ParticleEffects());
@@ -56,6 +66,12 @@ public class Lever : MonoBehaviour
             StopAllCoroutines();
             stop = true;
             shimmerSound.Stop();
+
+            for (int a = 0; a < mirrorObj.transform.childCount; a++)
+            {
+                mirrorObj.transform.GetChild(a).gameObject.SetActive(true);
+            }
+            blackBox.enabled = true;
 
         }
     }

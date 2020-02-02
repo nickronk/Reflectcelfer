@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class levelScript : MonoBehaviour
 { 
@@ -65,22 +66,20 @@ public class levelScript : MonoBehaviour
         }
         else if (level == 4)
         {
-            transform.position = new Vector3();
-            respA.transform.position = new Vector3();
+            transform.position = new Vector3(1f,1.8f,-10f);
+            respA.transform.position = new Vector3(-6.7f,-4.25f);
             player.transform.position = respA.transform.position;
         }
         else if (level == 5)
         {
-            transform.position = new Vector3();
-            respA.transform.position = new Vector3();
+            transform.position = new Vector3(99.1f,-6,-10f);
+            respA.transform.position = new Vector3(84.5f,-10.67f);
             player.transform.position = respA.transform.position;
         }
         else if (level == 6)
         
         {
-            transform.position = new Vector3();
-            respA.transform.position = new Vector3();
-            player.transform.position = respA.transform.position;
+            SceneManager.LoadScene(2); //endgame
         }
 
 

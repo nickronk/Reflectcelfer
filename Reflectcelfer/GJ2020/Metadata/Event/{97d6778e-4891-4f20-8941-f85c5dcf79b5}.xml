@@ -26,7 +26,6 @@
 			<destination>{32535af6-3635-4887-837f-3e9387cce961}</destination>
 		</relationship>
 		<relationship name="markerTracks">
-			<destination>{07a07bb3-f4f7-482d-980e-5b61724e3823}</destination>
 			<destination>{1bae8015-bdd6-4b40-939b-d9645a6bae13}</destination>
 			<destination>{59b7fbec-70e0-418d-95e1-cd8b559bd717}</destination>
 			<destination>{0d07b0c8-e006-499e-b08a-6019555124ed}</destination>
@@ -69,7 +68,6 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{32535af6-3635-4887-837f-3e9387cce961}" />
-	<object class="MarkerTrack" id="{07a07bb3-f4f7-482d-980e-5b61724e3823}" />
 	<object class="MarkerTrack" id="{1bae8015-bdd6-4b40-939b-d9645a6bae13}" />
 	<object class="MarkerTrack" id="{59b7fbec-70e0-418d-95e1-cd8b559bd717}" />
 	<object class="MarkerTrack" id="{0d07b0c8-e006-499e-b08a-6019555124ed}" />
@@ -543,7 +541,7 @@
 	</object>
 	<object class="TransitionMarker" id="{98797350-0d95-4f76-bf79-1fd12d103b28}">
 		<property name="position">
-			<value>11.294104308390022</value>
+			<value>11.294</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{20f2aea7-dd0b-4c08-96d8-022a1c1f2599}</destination>
@@ -560,13 +558,13 @@
 	</object>
 	<object class="TransitionMarker" id="{a974931b-6454-4e03-8d20-382657a27bb9}">
 		<property name="position">
-			<value>11.294104308390022</value>
+			<value>11.293800000000001</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{20f2aea7-dd0b-4c08-96d8-022a1c1f2599}</destination>
 		</relationship>
 		<relationship name="markerTrack">
-			<destination>{07a07bb3-f4f7-482d-980e-5b61724e3823}</destination>
+			<destination>{0d07b0c8-e006-499e-b08a-6019555124ed}</destination>
 		</relationship>
 		<relationship name="destination">
 			<destination>{056fb629-ce4b-4da6-8228-5b816fa7205d}</destination>
@@ -577,7 +575,7 @@
 	</object>
 	<object class="TransitionMarker" id="{deda6709-d6f8-4d02-a794-08560861d729}">
 		<property name="position">
-			<value>25.294104308390018</value>
+			<value>25.294</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{20f2aea7-dd0b-4c08-96d8-022a1c1f2599}</destination>
