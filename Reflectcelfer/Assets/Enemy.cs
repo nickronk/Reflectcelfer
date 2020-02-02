@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public Vector2 velocity;
 
     [Header("Position")]
-    public Vector2 startPos, enemyPos;
+    public Vector2 startPos, enemyPos,offset;
     public GameObject findPlayer;
     Vector2 rayDir = new Vector2(.5f, 0);
 
@@ -41,8 +41,7 @@ public class Enemy : MonoBehaviour
         findPlayer = GameObject.FindGameObjectWithTag("Player");
 
         //MOVING
-        velocity.x *= speed;
-        velocity.y = -2 + Mathf.Sin(Time.time * .25f);
+        velocity.y = offset.y + .25f * (Mathf.Sin(Time.time * speed));
 
         if (velocity.x > 0)
         {
