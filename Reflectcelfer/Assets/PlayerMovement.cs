@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+
         audSour = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         playerSr = GetComponent<SpriteRenderer>();

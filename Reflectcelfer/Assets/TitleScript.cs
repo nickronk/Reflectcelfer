@@ -12,6 +12,7 @@ public class TitleScript : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
         Panel.SetActive(false);
         startButton.interactable = true;
     }
