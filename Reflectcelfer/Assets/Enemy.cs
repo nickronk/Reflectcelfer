@@ -42,6 +42,9 @@ public class Enemy : MonoBehaviour
 
         //MOVING
         velocity.y = offset.y + .25f * (Mathf.Sin(Time.time * speed));
+        velocity.x = offset.x;
+        offset.x = startPos.x;
+        offset.y = startPos.y;
 
         if (velocity.x > 0)
         {
